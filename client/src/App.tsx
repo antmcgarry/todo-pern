@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { ITodo } from "@/services/interfaces/todo";
 import ListItem from "@/components/list-item";
 
-const USER_ID = "dcf267ef-0dbe-47c9-9a21-bbc9b13fea0a";
+const USER_ID = "dcf267ef-0dbe-47c9-9a21-bbc9b13fea";
 
 const App = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);

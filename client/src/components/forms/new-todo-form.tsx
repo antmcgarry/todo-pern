@@ -24,7 +24,7 @@ const NewTodoForm = ({ showModal, setShowModal }: NewTodoFormProps) => {
         user_id: "dcf267ef-0dbe-47c9-9a21-bbc9b13fea0a",
       });
       console.log(response);
-      setShowModal(true);
+      setShowModal(false);
     } catch (error) {
       console.log(error);
     }

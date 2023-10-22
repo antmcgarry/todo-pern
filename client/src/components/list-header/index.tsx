@@ -8,12 +8,17 @@ const onSignOut = () => {
 
 const ListHeader = ({ listName }: ListHeaderProps) => {
   return (
-    <div className="list-header">
-      <h1>{listName}</h1>
-      <div></div>
-      <div className="button-container">
-        <button className="btn btn-primary">Add New</button>
-        <button className="btn btn-secondary" onClick={onSignOut}>
+    <div className="flex justify-between items-center	p-4 border-b-4 border-slate-500">
+      <h1 className="text-6xl">{listName}</h1>
+      <div />
+      <div className="flex flex-wrap justify-center gap-4 p-4">
+        <button className="flex sm:inline-flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white font-semibold text-center rounded-md outline-none transition duration-100 px-5 py-2">
+          Add New
+        </button>
+        <button
+          className="flex sm:inline-flex justify-center items-center bg-green-500 hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300 text-white font-semibold text-center rounded-md outline-none transition duration-100 px-5 py-2"
+          onClick={onSignOut}
+        >
           Sign Out
         </button>
       </div>

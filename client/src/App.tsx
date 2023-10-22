@@ -18,11 +18,15 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <ListHeader listName="🌴 Holiday tick list 🌴" />
-      {todos.map((todo) => (
-        <ListItem key={todo.id} task={todo} />
-      ))}
+    <div className="bg-purple-200 h-screen overflow-hidden flex items-center justify-center">
+      <div className="bg-slate-200 rounded-xl lg:w-6/12 md:7/12 w-8/12 shadow-3xl">
+        <ListHeader listName="Todo App" />
+        <div className="divide-y divide-slate-700">
+          {todos.map((todo) => (
+            <ListItem key={todo.id} task={todo} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

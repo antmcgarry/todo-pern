@@ -3,13 +3,12 @@ import { Dialog, Transition } from "@headlessui/react";
 
 interface ModalProps {
   onClose: () => void;
-  onConfirm: () => void;
   title: string;
   isOpen: boolean;
   children: React.ReactNode;
 }
 
-const Modal = ({ onClose, onConfirm, title, isOpen, children }: ModalProps) => {
+const Modal = ({ onClose, title, isOpen, children }: ModalProps) => {
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog onClose={onClose} className="relative z-50">
@@ -60,11 +59,7 @@ const Modal = ({ onClose, onConfirm, title, isOpen, children }: ModalProps) => {
                     </svg>
                   </button>
                 </header>
-                <div className="mt-2">{children}</div>
-                <div className="flex justify-end items-center w-full gap-4 ">
-                  <button onClick={onClose}>Cancel</button>
-                  <button onClick={onConfirm}>Confirm</button>
-                </div>
+                <div className="my-2">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal } from "../modal";
+import NewTodoForm from "../forms/new-todo-form";
 
 interface ListHeaderProps {
   listName: string;
@@ -18,7 +19,7 @@ const ListHeader = ({ listName }: ListHeaderProps) => {
       <div className="flex flex-wrap justify-center gap-4 p-4">
         <button
           className="flex sm:inline-flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white font-semibold text-center rounded-md outline-none transition duration-100 px-5 py-2"
-          onClick={() => setShowModal((prev) => !prev)}
+          onClick={() => setShowModal(true)}
         >
           Add New
         </button>
@@ -29,11 +30,7 @@ const ListHeader = ({ listName }: ListHeaderProps) => {
           Sign Out
         </button>
       </div>
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        title="Add New TODO"
-      />
+      <NewTodoForm showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };

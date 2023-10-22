@@ -25,7 +25,9 @@ export const deleteTodo = async (id: string): Promise<void> => {
   }
 };
 
-export const createTodo = async (todo: ITodo): Promise<ITodo> => {
+export const createTodo = async (
+  todo: Omit<ITodo, "id" | "date">
+): Promise<ITodo> => {
   try {
     const response = await instance.post<ITodo>(TODO_PATH, todo);
     return response.data;

@@ -1,5 +1,5 @@
 import ListHeader from "@/components/list-header";
-import { getDate } from "@/services";
+import { getTodos } from "@/services";
 import { useEffect, useState } from "react";
 import type { ITodo } from "@/services/interfaces/todo";
 import ListItem from "@/components/list-item";
@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const data = await getDate(USER_ID);
+      const data = await getTodos(USER_ID);
       setTodos(data);
     };
     fetchTodos();

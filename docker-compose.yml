@@ -1,6 +1,18 @@
 version: "3.8"
 
 services:
+  node-server:
+    container_name: node-server
+    build:
+      context: ./server
+      args:
+        ENV_ARG: production
+    env_file:
+      - ./server/.env
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - db
   db:
     container_name: postgres_container
     image: postgres

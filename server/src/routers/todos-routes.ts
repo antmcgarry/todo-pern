@@ -1,5 +1,9 @@
 import express from "express";
-import { createParamValidator, createBodyValidator } from "@/middleware";
+import {
+  createParamValidator,
+  createBodyValidator,
+  createQueryValidator,
+} from "@/middleware";
 import {
   createTodo,
   getTodos,
@@ -15,7 +19,7 @@ import {
 
 const router = express.Router();
 
-router.get("/todos", createParamValidator(getTodosSchema), getTodos);
+router.get("/todos", createQueryValidator(getTodosSchema), getTodos);
 
 router.post("/todos", createBodyValidator(createTodoSchema), createTodo);
 

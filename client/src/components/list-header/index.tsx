@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Modal } from "../modal";
 import NewTodoForm from "../forms/new-todo-form";
 
 interface ListHeaderProps {

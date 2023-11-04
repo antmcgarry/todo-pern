@@ -10,7 +10,7 @@ WORKDIR /usr/app
 
 # Copy package files and install dependencies
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy the app source to the WORKDIR
 COPY . .

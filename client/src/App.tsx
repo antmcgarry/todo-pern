@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { ITodo } from "@/services/interfaces/todo";
 import ListItem from "@/components/list-item";
 
-const USER_ID = "dcf267ef-0dbe-47c9-9a21-bbc9b13fea0a";
+const USER_ID = "fa730cbc-2239-4e0b-8b63-a4d6263a1ff2";
 
 const App = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -18,8 +18,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-purple-200 h-screen overflow-hidden flex items-center justify-center">
-      <div className="bg-slate-200 rounded-xl lg:w-6/12 md:7/12 w-8/12 shadow-3xl">
+    <div className="bg-purple-200 pt-8">
+      <div className="container mx-auto bg-slate-200 rounded-xl lg:w-6/12 md:7/12 w-8/12 shadow-3xl">
         <ListHeader listName="Todo App" />
         <div className="divide-y divide-slate-700">
           {todos.map((todo) => (

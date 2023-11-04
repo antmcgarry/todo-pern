@@ -14,7 +14,7 @@ const ListHeader = ({ listName }: ListHeaderProps) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="flex justify-between items-center	p-4 border-b-4 border-slate-500">
-      <h1 className="text-6xl">{listName}</h1>
+      <h1 className="text-4xl">{listName}</h1>
       <div />
       <div className="flex flex-wrap justify-center gap-4 p-4">
         <button

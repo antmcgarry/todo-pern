@@ -23,6 +23,7 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - node-db-data:/var/lib/postgresql/data
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
   pgadmin:
     container_name: pgadmin4_container
@@ -34,4 +35,35 @@ services:
     ports:
       - 5050:80
     volumes:
+      - pgadmin-data:/var/lib/pgadmin
       - ./server/db/servers.json:/pgadmin4/servers.json
+
+  identity-service:
+    container_name: identity-service
+    build:
+      context: ./identity-service
+      args:
+        ENV_ARG: production
+    env_file:
+      - ./identity-service/.env
+    ports:
+      - 3001:3000
+    depends_on:
+      - identity_db
+  identity_db:
+    container_name: identity-service_postgres_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5433:5432
+    volumes:
+      - identity-db-data:/var/lib/postgresql/data
+      - ./identity-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  node-db-data:
+  identity-db-data:
+  pgadmin-data:

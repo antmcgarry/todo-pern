@@ -7,6 +7,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 
 import { AppDataSource } from './data-source';
 import V1Routes from './routes/v1';
+import logger, { stream } from './config/logger';
 
 const PORT = process.env.PORT || 3000;
 
@@ -58,7 +59,7 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 const app = express();
-app.use(morgan('dev'));
+app.use(morgan('short', { stream }));
 
 app.use(cors());
 app.use(express.json());
@@ -75,8 +76,8 @@ app.get('/api-docs', swaggerUi.setup(swaggerSpec));
 AppDataSource.initialize()
   .then(async () => {
     app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}...`);
+      logger.info(`Server listening on port ${PORT}...`);
     });
-    console.log('Data Source has been initialized!');
+    logger.info('Data Source has been initialized!');
   })
-  .catch((error) => console.log(error));
+  .catch((error) => logger.error(error));

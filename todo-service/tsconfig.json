@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "lib": ["ES5", "ES6"], // Adjust according to your needs
+    "target": "ES6", // Or whichever target you prefer
+    "module": "CommonJS",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "importsNotUsedAsValues": "remove",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    // typeorm config
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

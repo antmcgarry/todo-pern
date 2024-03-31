@@ -6,8 +6,8 @@ import path from 'path';
 
 dotenv.config();
 
-const PEM_PATH = process.env.PEM_FILE_PATH || path.resolve(__dirname, '../../jwtRS256_key.pem');
-const PUB_PATH = process.env.PUB_FILE_PATH || path.resolve(__dirname, '../../jwtRS256_key.pub');
+const PEM_PATH = process.env.PEM_FILE_PATH || path.resolve(__dirname, '../../../jwtRS256_key.pem');
+const PUB_PATH = process.env.PUB_FILE_PATH || path.resolve(__dirname, '../../../jwtRS256_key.pub');
 
 const encryptPassword = async (password: string) => {
   return bcrypt.hash(password, 12);

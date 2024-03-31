@@ -50,6 +50,12 @@ services:
       - 3001:3000
     depends_on:
       - identity_db
+    volumes:
+      - ./jwtRS256_key.pem:/usr/src/app/keys/jwtRS256_key.pem
+      - ./jwtRS256_key.pub:/usr/src/app/keys/jwtRS256_key.pub
+    environment:
+      - PEM_FILE_PATH=/usr/src/app/keys/jwtRS256_key.pem
+      - PUB_FILE_PATH=/usr/src/app/keys/jwtRS256_key.pub
   identity_db:
     container_name: identity-service_postgres_container
     image: postgres
@@ -62,8 +68,37 @@ services:
     volumes:
       - identity-db-data:/var/lib/postgresql/data
       - ./identity-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  todo-service:
+    container_name: todo-service
+    build:
+      context: ./todo-service
+      args:
+        ENV_ARG: production
+    env_file:
+      - ./todo-service/.env
+    ports:
+      - 3002:3000
+    depends_on:
+      - todo_db
+    volumes:
+      - ./jwtRS256_key.pub:/usr/src/app/keys/jwtRS256_key.pub
+    environment:
+      - PUB_FILE_PATH=/usr/src/app/keys/jwtRS256_key.pub
+  todo_db:
+    container_name: todo-service_postgres_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5434:5432
+    volumes:
+      - todo-db-data:/var/lib/postgresql/data
+      - ./todo-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   node-db-data:
   identity-db-data:
+  todo-db-data:
   pgadmin-data:

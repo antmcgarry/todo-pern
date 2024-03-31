@@ -10,7 +10,7 @@ import {
  * @openapi
  *  components:
  *  schemas:
- *    User:
+ *    Todo:
  *      type: object
  *      properties:
  *        id:
@@ -22,20 +22,24 @@ import {
  *          type: string
  *        description:
  *          type: string
- *       completed:
- *         type: boolean
+ *        completed:
+ *          type: boolean
+ *          default: false
+ *        due_date:
+ *           type: string
+ *           format: date-time
  *        createdAt:
- *          type: string
- *          format: date-time
+ *            type: string
+ *            format: date-time
  *        updatedAt:
- *          type: string
- *          format: date-time
+ *            type: string
+ *            format: date-time
  */
 
 @Entity({ name: "todos" })
 export class Todo {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column("uuid")
   user_id: string;
@@ -43,15 +47,18 @@ export class Todo {
   @Column()
   label: string;
 
-  @Column()
+  @Column({ nullable: true, type: "text" })
   description: string;
 
-  @Column()
+  @Column({ default: false })
   completed: boolean;
 
+  @Column({ nullable: true })
+  due_date: Date;
+
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 }

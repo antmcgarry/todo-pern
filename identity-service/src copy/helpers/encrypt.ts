@@ -6,9 +6,6 @@ import path from 'path';
 
 dotenv.config();
 
-const PEM_PATH = process.env.PEM_FILE_PATH || path.resolve(__dirname, '../../jwtRS256_key.pem');
-const PUB_PATH = process.env.PUB_FILE_PATH || path.resolve(__dirname, '../../jwtRS256_key.pub');
-
 const encryptPassword = async (password: string) => {
   return bcrypt.hash(password, 12);
 };
@@ -17,12 +14,12 @@ const comparePassword = async (hashPassword: string, password: string) => {
 };
 
 const generateToken = (payload: any) => {
-  const privateKey = fs.readFileSync(PEM_PATH, 'utf8');
+  const privateKey = fs.readFileSync(path.resolve(__dirname, './jwtRS256_key.pem'), 'utf8');
   return jwt.sign(payload, privateKey, { expiresIn: '1d', algorithm: 'RS256' });
 };
 
 const verifyToken = (token: string) => {
-  const publicKey = fs.readFileSync(PUB_PATH, 'utf8');
+  const publicKey = fs.readFileSync(path.resolve(__dirname, './jwtRS256_key.pub'), 'utf8');
   return jwt.verify(token, publicKey, { algorithms: ['RS256'] });
 };
 

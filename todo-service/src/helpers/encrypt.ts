@@ -6,11 +6,12 @@ import path from "path";
 
 dotenv.config();
 
+const PUB_PATH =
+  process.env.PUB_FILE_PATH ||
+  path.resolve(__dirname, "../../../jwtRS256_key.pub");
+
 const verifyToken = (token: string) => {
-  const publicKey = fs.readFileSync(
-    path.resolve(__dirname, "../../../jwtRS256_key.pub"),
-    "utf8"
-  );
+  const publicKey = fs.readFileSync(PUB_PATH, "utf8");
   return jwt.verify(token, publicKey, { algorithms: ["RS256"] });
 };
 

@@ -1,9 +1,8 @@
 import { Router } from "express";
+import TodoRoutes from "./todo-routes";
 
 const router = Router();
 
-router.post("/todo", (req, res) => {
-  res.status(200).json({ message: "TODO Service" });
-});
+router.use(TodoRoutes);
 
 export default router;

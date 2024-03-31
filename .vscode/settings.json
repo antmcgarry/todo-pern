@@ -9,6 +9,16 @@
       "name": "identity-service",
       "username": "root",
       "database": "identity_db"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5434,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "todo-service",
+      "username": "root",
+      "database": "todo_db"
     }
   ]
 }

@@ -169,16 +169,21 @@ router.put("/todo", createBodyValidator(UpdateTodoSchema), updateTodo);
 
 /**
  * @openapi
- * /todo/{id}:
+ * /todo:
  *  delete:
  *    tags:
  *      - Todos
  *    summary: delete todo
  *    description: delete todo
- *    parameters:
- *      - in: path
- *        name: id
- *        required: true
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              id:
+ *                type: string
  *    responses:
  *      200:
  *        description: Todo deleted successfully
@@ -198,6 +203,6 @@ router.put("/todo", createBodyValidator(UpdateTodoSchema), updateTodo);
  *
  */
 
-router.delete("/todo:id", createParamValidator(getTodoById), deleteTodo);
+router.delete("/todo", createParamValidator(getTodoById), deleteTodo);
 
 export default router;

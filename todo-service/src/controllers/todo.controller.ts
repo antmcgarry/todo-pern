@@ -75,7 +75,7 @@ export const updateTodo = async (req: Request, res: Response) => {
 
 export const deleteTodo = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const todo = await todoService.getTodoById(id);
     if (!todo) {
       return res.status(404).json({ message: "Todo not found" });

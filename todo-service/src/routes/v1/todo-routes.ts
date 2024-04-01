@@ -141,10 +141,7 @@ router.get("/todo/:id", createParamValidator(getTodoById), getTodo);
  *            schema:
  *              type: object
  *              properties:
- *                label:
- *                  type: string
- *                description:
- *                  type: string
+ *                ref: '#/components/schemas/Todo'
  *      responses:
  *        200:
  *          description: Todo fetched successfully

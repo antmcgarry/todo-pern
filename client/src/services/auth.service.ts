@@ -7,7 +7,7 @@ export type User = {
   role: string;
 };
 
-interface LoginResponse {
+interface AuthResponse {
   token: string;
   user: User;
 }
@@ -17,27 +17,26 @@ const AuthService = createAxiosInstance(
 );
 
 const login = async (email: string, password: string) => {
-  const response = await AuthService.post<LoginResponse>("/v1/auth/login", {
+  const response = await AuthService.post<AuthResponse>("/v1/auth/login", {
     email,
     password,
   });
   return response.data;
 };
 
-interface RegisterResponse {
-  token: string;
-  user: User;
-}
+const getUserDetails = async () => {
+  const response = await AuthService.get<Pick<AuthResponse, "user">>(
+    "/v1/auth/get-user"
+  );
+  return response.data;
+};
 
 const register = async (email: string, password: string, name: string) => {
-  const response = await AuthService.post<RegisterResponse>(
-    "/v1/auth/register",
-    {
-      email,
-      password,
-      name,
-    }
-  );
+  const response = await AuthService.post<AuthResponse>("/v1/auth/register", {
+    email,
+    password,
+    name,
+  });
   return response.data;
 };
 
@@ -48,4 +47,4 @@ const changePassword = async (oldPassword: string, newPassword: string) => {
   });
 };
 
-export { login, register, changePassword };
+export { login, register, changePassword, getUserDetails };

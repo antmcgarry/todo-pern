@@ -1,4 +1,4 @@
-import useAuth from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {

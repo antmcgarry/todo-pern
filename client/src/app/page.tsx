@@ -3,10 +3,12 @@ import LoginForm from "@/components/login-form";
 import Modal from "@/components/modal";
 import TodoForm from "@/components/todo-form";
 import TodoItem from "@/components/todo-item";
+import { useAuth } from "@/hooks/useAuth";
 import useTodos from "@/hooks/useTodos";
 import { useState } from "react";
 
 export default function Home() {
+  const { user } = useAuth();
   const { todos, addTodo } = useTodos();
   const [open, setOpen] = useState(false);
 
@@ -15,12 +17,16 @@ export default function Home() {
       <header className="flex w-full h-16 bg-gray-800">
         <div className="flex items-center justify-between mx-auto min-w-80 max-w-7xl w-full px-4">
           <h1 className="text-white font-bold">Todo</h1>
-          <button
-            className="text-white bg-blue-500 hover:bg-blue-700 p-4 rounded "
-            onClick={() => setOpen(true)}
-          >
-            Sign in
-          </button>
+          {user ? (
+            <h1 className="text-white font-bold">{user.name}</h1>
+          ) : (
+            <button
+              className="text-white bg-blue-500 hover:bg-blue-700 p-4 rounded "
+              onClick={() => setOpen(true)}
+            >
+              Sign in
+            </button>
+          )}
         </div>
       </header>
       <main className="flex h-screen w-full">

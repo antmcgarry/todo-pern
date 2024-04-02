@@ -200,6 +200,6 @@ router.put("/todo", createBodyValidator(UpdateTodoSchema), updateTodo);
  *
  */
 
-router.delete("/todo", createParamValidator(getTodoById), deleteTodo);
+router.delete("/todo", createBodyValidator(getTodoById), deleteTodo);
 
 export default router;

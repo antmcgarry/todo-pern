@@ -13,7 +13,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen">
       <header className="flex w-full h-16 bg-gray-800">
         <div className="flex items-center justify-between mx-auto min-w-80 max-w-7xl w-full px-4">
           <h1 className="text-white font-bold">Todo</h1>
@@ -29,7 +29,7 @@ export default function Home() {
           )}
         </div>
       </header>
-      <main className="flex h-screen w-full">
+      <main className="flex w-full">
         <div className="flex flex-col flex-[1_0_auto]">
           <div className="flex mx-auto min-w-80 max-w-7xl w-full px-4 mt-2">
             <section className="flex flex-col w-3/4 gap-4">

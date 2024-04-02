@@ -53,10 +53,20 @@ const changePassword = async (userId: number, oldPassword: string, newPassword: 
   return { message: 'Password changed successfully' };
 };
 
+export const getUserDetails = async (userId: number) => {
+  const user = await userRepository.findOneBy({ id: userId });
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  return user;
+};
+
 const userService = {
   createUser,
   loginUser,
   changePassword,
+  getUserDetails,
 };
 
 export default userService;

@@ -34,3 +34,14 @@ export const changePassword = async (req: Request, res: Response): Promise<Respo
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const getUserDetails = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const { user } = req.body;
+    const userDetails = await userService.getUserDetails(user.user_id);
+    return res.status(200).json({ user: userDetails });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};

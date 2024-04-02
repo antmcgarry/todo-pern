@@ -1,4 +1,4 @@
-import { createUser, loginUser, changePassword } from '@/controllers/auth-controller';
+import { createUser, loginUser, changePassword, getUserDetails } from '@/controllers/auth-controller';
 import { VerifyAuth, createBodyValidator } from '@/middleware';
 import changePasswordSchema from '@/validation/change-password';
 import createUserSchema from '@/validation/create-user';
@@ -145,5 +145,29 @@ router.post('/register', createBodyValidator(createUserSchema), createUser);
  *
  */
 router.put('/change-password', createBodyValidator(changePasswordSchema), VerifyAuth, changePassword);
+
+/**
+ * @openapi
+ * /auth/get-user:
+ * get:
+ *      tags:
+ *       - Auth
+ *      summary: Get user details
+ *      description: Get user details
+ *      responses:
+ *          200:
+ *           description: User details fetched successfully
+ *           content:
+ *           application/json:
+ *              schema:
+ *                  type: object
+ *                  properties:
+ *                      user:
+ *                          $ref: '#/components/schemas/User'
+ *          500:
+ *              description: Internal server error
+ *
+ */
+router.get('/get-user', VerifyAuth, getUserDetails);
 
 export default router;
